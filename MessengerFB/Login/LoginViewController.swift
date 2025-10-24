@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var registerFbBt: UIButton!
     @IBOutlet weak var registerAppleBt: UIButton!
     @IBOutlet weak var registerGgBt: UIButton!
-    @IBOutlet weak var toggleBt: UIButton!
+    @IBOutlet weak var btToggle: UIButton!
     @IBOutlet weak var mesLabel: UILabel!
     @IBOutlet weak var userTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,22 +22,43 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIHelper.styleButton(loginButton, titleColor: AppColors.lightGray, backgroundColor: AppColors.emeraldGreen, cornerRadius: 8)
-        UIHelper.styleLabel(mesLabel, textColor: AppColors.lightGray,masksToBound: true)
-        UIHelper.styleButton(cancelButton,titleColor: AppColors.lightGray, backgroundColor: AppColors.danger,cornerRadius: 8)
-        UIHelper.styleView(view,backgroundColor: AppColors.primaryColor)
-        
-        //        UIHelper.styleButton(registerEmailBt,backgroundColor: AppColors.lightGray, cornerRadius: 25)
-        //        UIHelper.styleButton(registerFbBt,backgroundColor: AppColors.lightGray, cornerRadius: 25)
-        //        UIHelper.styleButton(registerAppleBt,backgroundColor: AppColors.lightGray, cornerRadius: 25)
-        //        UIHelper.styleButton(registerGgBt,backgroundColor: AppColors.lightGray, cornerRadius: 25)
-        
-        //setting button hide/show password
-        //        toggleBt.setImage(UIImage(named: "eyeToggle"), for: .selected)
-        //        toggleBt.setImage(UIImage(named: "eyeToggleHide"), for: .normal)
-        //        toggleBt.imageView?.contentMode = .scaleAspectFill
-        //        passwordTextField.isSecureTextEntry = true
-        //        passwordTextField.addTarget(self, action: #selector(passwordTypingEffect(_:)), for: .editingChanged)
+        //        setting button hide/show password
+        btToggle.setImage(UIImage(named: "eyeToggle"), for: .selected)
+        btToggle.setImage(UIImage(named: "eyeToggleHide"), for: .normal)
+        btToggle.imageView?.contentMode = .scaleAspectFill
+        passwordTextField.isSecureTextEntry = true
+        //        passwordTextField.addTarget(self, action: #selector(tapTogglePw(_:)), for: .editingChanged)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        applyMessengerGradient(to: self.view)
+        applyBackgroundBt()
+    }
+    
+    func applyMessengerGradient(to view: UIView) {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [
+            UIColor(red: 86/255, green: 204/255, blue: 242/255, alpha: 1).cgColor, // #56CCF2
+            UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1).cgColor  // #9B51E0
+        ]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        gradient.cornerRadius = 20
+        view.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func applyBackgroundBt() {
+        loginButton.layer.cornerRadius = 8
+        loginButton.clipsToBounds = true
+        loginButton.applyGradient(colors: [
+            UIColor(red: 86/255, green: 204/255, blue: 242/255, alpha: 1), // #56CCF2
+            UIColor(red: 155/255, green: 81/255, blue: 224/255, alpha: 1)  // #9B51E0
+        ])
+        cancelButton.layer.cornerRadius = 8
+        cancelButton.backgroundColor = UIColor(white: 0.9, alpha: 1) // #E0E0E0
+        cancelButton.setTitleColor(.darkGray, for: .normal)
     }
     
     //    @objc func passwordTypingEffect(_ textField: UITextField) {
@@ -92,18 +113,18 @@ class LoginViewController: UIViewController {
         userTextField.becomeFirstResponder()
     }
     
-    //
-    //    @IBAction func tapToggleBtPassword(_ sender: UIButton) {
-    //        //        chuyen doi nhung image ko chuyen doi duoc
-    //        //        passwordTextField.isSecureTextEntry.toggle()
-    //        toggleBt.isSelected = !toggleBt.isSelected
-    //        passwordTextField.isSecureTextEntry = !toggleBt.isSelected
-    //
-    //        // Cách "hack" để cập nhật ngay text (tránh bị delay của isSecureTextEntry)
-    //        let currentText = passwordTextField.text
-    //        passwordTextField.text = ""
-    //        passwordTextField.text = currentText
-    //    }
+    @IBAction func tapTogglePw(_ sender: Any) {
+        // image ko chuyen doi duoc
+        passwordTextField.isSecureTextEntry.toggle()
+        btToggle.isSelected = !btToggle.isSelected
+        passwordTextField.isSecureTextEntry = !btToggle.isSelected
+        
+        // Cách "hack" để cập nhật ngay text (tránh bị delay của isSecureTextEntry)
+        let currentText = passwordTextField.text
+        passwordTextField.text = ""
+        passwordTextField.text = currentText
+        
+    }
     
     @IBAction func tapRegisterGmail(_ sender: Any) {
         //        guard let clientID = FirebaseApp.app()?.options.clientID else { return }

@@ -84,6 +84,21 @@ struct AppColors {
     static let sunsetOrange =  UIColor(red: 255/255, green: 94/255, blue: 87/255, alpha: 1)
 }
 
+extension UIButton {
+    func applyGradient(colors: [UIColor]) {
+        // Xóa lớp gradient cũ nếu có
+        layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = colors.map { $0.cgColor }
+        gradient.startPoint = CGPoint(x: 0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.cornerRadius = layer.cornerRadius
+        layer.insertSublayer(gradient, at: 0)
+    }
+}
+
 struct MyModel {
     let title: String
     let imageName: String

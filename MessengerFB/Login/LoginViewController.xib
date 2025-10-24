@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogiViewController" customModule="MessengerFB" customModuleProvider="target">
             <connections>
+                <outlet property="btToggle" destination="fgy-4Y-ns0" id="SJW-k9-CI5"/>
                 <outlet property="cancelButton" destination="p1Z-Ru-aGn" id="akn-py-qY1"/>
                 <outlet property="loginButton" destination="YGP-0o-fjm" id="zaO-vB-1gK"/>
                 <outlet property="mesLabel" destination="cIS-19-4ME" id="KPX-Vc-iIY"/>
@@ -40,20 +41,45 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-an-1HJ">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-GJ-2bh">
                             <rect key="frame" x="0.0" y="60" width="353" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-an-1HJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgy-4Y-ns0">
+                                    <rect key="frame" x="323" y="15" width="20" height="20"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="LSD-sv-mzf"/>
+                                        <constraint firstAttribute="height" constant="20" id="anW-oh-cDm"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="eyeToggle">
+                                        <color key="baseForegroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="tapTogglePw:" destination="-1" eventType="touchUpInside" id="24b-m7-db8"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="fgy-4Y-ns0" secondAttribute="trailing" constant="10" id="SSa-fZ-iqM"/>
+                                <constraint firstItem="fgy-4Y-ns0" firstAttribute="centerY" secondItem="WGS-GJ-2bh" secondAttribute="centerY" id="anc-2F-mA4"/>
+                            </constraints>
+                        </view>
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qEh-0J-Zui">
-                    <rect key="frame" x="60" y="271" width="273" height="86"/>
+                    <rect key="frame" x="70" y="271" width="253" height="96"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGP-0o-fjm">
-                            <rect key="frame" x="0.0" y="0.0" width="273" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="253" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="DgK-sV-1RB"/>
+                                <constraint firstAttribute="height" constant="45" id="DgK-sV-1RB"/>
                             </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Login"/>
@@ -62,7 +88,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1Z-Ru-aGn">
-                            <rect key="frame" x="0.0" y="46" width="273" height="40"/>
+                            <rect key="frame" x="0.0" y="51" width="253" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="put-ie-Sdf"/>
+                            </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
                             <connections>
@@ -76,19 +105,20 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qEh-0J-Zui" secondAttribute="trailing" constant="70" id="3s5-UV-oO2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lrT-C7-6Uk" secondAttribute="trailing" constant="20" id="4e2-FP-liQ"/>
                 <constraint firstItem="lrT-C7-6Uk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="MFl-TP-JWB"/>
                 <constraint firstItem="lrT-C7-6Uk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="90" id="ROZ-D4-Xbs"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qEh-0J-Zui" secondAttribute="trailing" constant="60" id="RWa-rH-qFe"/>
+                <constraint firstItem="qEh-0J-Zui" firstAttribute="top" secondItem="lrT-C7-6Uk" secondAttribute="bottom" constant="12" id="d52-uZ-bHU"/>
                 <constraint firstItem="cIS-19-4ME" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fff-uk-xz9"/>
-                <constraint firstItem="qEh-0J-Zui" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="fge-CF-39Q"/>
                 <constraint firstItem="cIS-19-4ME" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="35" id="ie5-sw-rQB"/>
-                <constraint firstItem="qEh-0J-Zui" firstAttribute="top" secondItem="lrT-C7-6Uk" secondAttribute="bottom" constant="12" id="oSz-6T-THO"/>
+                <constraint firstItem="qEh-0J-Zui" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="vXg-oc-LAK"/>
             </constraints>
             <point key="canvasLocation" x="154.96183206106869" y="16.901408450704228"/>
         </view>
     </objects>
     <resources>
+        <image name="eyeToggle" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
