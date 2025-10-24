@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
             passwordTextField.becomeFirstResponder()
             return
         }
-        if tenDangNhap == "hetminhfc" && matKhau == "hvq130596" {
+        if tenDangNhap == "quoc130596" && matKhau == "hvq130596" {
             let tabBarController = MainTabBarController()
             // Cách 1: Thay rootViewController (xoá login khỏi stack)
             if let sceneDelegate = UIApplication.shared.connectedScenes
