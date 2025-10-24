@@ -95,7 +95,7 @@ class HalfModalViewController: UIViewController {
         }
         
         let tosLabel = UILabel()
-        tosLabel.text = "Messenger"
+        tosLabel.text = "Messenger Pro"
         tosLabel.textColor = .systemBlue
         tosLabel.font = .systemFont(ofSize: 14)
         tosLabel.isUserInteractionEnabled = true
